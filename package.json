@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Backend for Unicorn e-commerce store",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pink-fluffy/api.git"
+  },
+  "author": "Sidharth Sudarsan <hi@sidharth.me> (https://github.com/sidoverflow)",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/pink-fluffy/api/issues"
+  },
+  "homepage": "https://github.com/pink-fluffy/api#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
