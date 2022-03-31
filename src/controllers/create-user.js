@@ -11,8 +11,11 @@ export default function makeCreateUser({
 		const response = new ServiceResponse();
 		try {
 			const { first_name, last_name, email, password } = body;
+			if (!(first_name && last_name && email && password))
+				throw { code: enums.ERRORS.INVALID_INPUT.code, message: enums.ERRORS.INVALID_INPUT.message };
+
 			const created = await register(first_name, last_name, email, password);
-			const resBody = new ServiceData(created.data, 0, 'Made');
+			const resBody = new ServiceData(created.data, 0, enums.REASON_PHRASES.CREATED);
 			const status = enums.STATUS_CODES.CREATED;
 
 			response.body = resBody;
