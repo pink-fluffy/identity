@@ -6,9 +6,8 @@ export class ServiceResponse {
 	}
 }
 export class ServiceData {
-	constructor(data, err_code = 0, message = '') {
+	constructor(data, message = '') {
 		this.data = data;
-		this.err_code = err_code;
 		this.message = message;
 	}
 }

@@ -18,7 +18,7 @@ export default function makeCreateUser(usersDb) {
 		const user = makeUser(userInfo);
 		const exists = await usersDb.findByEmail(user.getEmail());
 		if (exists) {
-			throw { code: enums.ERRORS.DUPLICATE_USER.code, message: enums.ERRORS.DUPLICATE_USER.message };
+			throw { status: enums.ERRORS.DUPLICATE_USER.status, message: enums.ERRORS.DUPLICATE_USER.message };
 		}
 
 		return usersDb.insert({
@@ -26,7 +26,9 @@ export default function makeCreateUser(usersDb) {
 			password: user.getPassword(),
 			role: user.getRole(),
 			first_name: user.getFirstName(),
-			last_name: user.getLastName()
+			last_name: user.getLastName(),
+			created_at: user.getCreatedAt(),
+			updated_at: user.getUpdatedAt()
 		});
 	};
 }

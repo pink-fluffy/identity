@@ -1,10 +1,10 @@
 const ERRORS = {
 	DUPLICATE_USER: {
-		code: 99409,
+		status: 409,
 		message: 'User already exists'
 	},
 	INVALID_INPUT: {
-		code: 99400,
+		status: 400,
 		message: 'Input is invalid'
 	}
 };

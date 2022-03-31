@@ -12,7 +12,7 @@ export default function makeUsersDb({ makeDb, userModel }) {
 
 	async function insert(user) {
 		const db = await makeDb();
-		const result = await userModel.register(user.first_name, user.last_name, user.email, user.password);
+		const result = await userModel.register(user);
 		return result;
 	}
 }

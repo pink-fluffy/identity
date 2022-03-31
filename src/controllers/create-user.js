@@ -12,22 +12,19 @@ export default function makeCreateUser({
 		try {
 			const { first_name, last_name, email, password } = body;
 			if (!(first_name && last_name && email && password))
-				throw { code: enums.ERRORS.INVALID_INPUT.code, message: enums.ERRORS.INVALID_INPUT.message };
+				throw { status: enums.ERRORS.INVALID_INPUT.status, message: enums.ERRORS.INVALID_INPUT.message };
 
 			const created = await register(first_name, last_name, email, password);
-			const resBody = new ServiceData(created.data, 0, enums.REASON_PHRASES.CREATED);
+			const resBody = new ServiceData(created.data, enums.REASON_PHRASES.CREATED);
 			const status = enums.STATUS_CODES.CREATED;
 
 			response.body = resBody;
 			response.status = status;
 			response.last_modified = created.last_modified;
 		} catch (err) {
-			const resBody = new ServiceData(null, err.code, err.message);
-			var status;
-			if (err.code == enums.ERRORS.DUPLICATE_USER.code) status = enums.STATUS_CODES.CONFLICT;
-			else if (err.code == enums.ERRORS.INVALID_INPUT.code) status = enums.STATUS_CODES.BAD_REQUEST;
+			const resBody = new ServiceData(null, err.message);
 			response.body = resBody;
-			response.status = status;
+			response.status = err.status;
 		}
 		return response;
 	};

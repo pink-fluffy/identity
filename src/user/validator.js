@@ -5,8 +5,8 @@ import enums from '../enums';
  */
 export default function validator(user) {
 	const validationError = {
-		code: enums.ERRORS.INVALID_INPUT.code,
+		status: enums.ERRORS.INVALID_INPUT.status,
 		message: enums.ERRORS.INVALID_INPUT.message
 	};
-	return { code: 0, message: '' };
+	return { status: enums.STATUS_CODES.OK, message: '' };
 }

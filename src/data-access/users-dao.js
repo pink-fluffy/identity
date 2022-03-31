@@ -14,16 +14,18 @@ class UserDAO {
 		return user;
 	}
 
-	static async register(first_name, last_name, email, password) {
+	static async register(user) {
 		// Create user in database
-		const user = await this.create({
-			first_name,
-			last_name,
-			email: email,
-			password: password
+		const createdUser = await this.create({
+			first_name: user.first_name,
+			last_name: user.last_name,
+			email: user.email,
+			password: user.password,
+			created_at: user.created_at,
+			updated_at: user.updated_at
 		});
 
-		return user;
+		return createdUser;
 	}
 }
 

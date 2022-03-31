@@ -17,11 +17,11 @@ export default function buildMakeUser(validator) {
 		address,
 		cart_items,
 		orders,
-		created_at,
-		updated_at
+		created_at = Date.now(),
+		updated_at = Date.now()
 	} = {}) {
 		let error = validator({ email, password, role, first_name, last_name });
-		if (error.code != 0) throw error;
+		if (error.status != 200) throw error;
 
 		return Object.freeze({
 			getFirstName: () => first_name,
