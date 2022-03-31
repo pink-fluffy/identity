@@ -1,19 +1,22 @@
 {
-  "name": "api",
+  "name": "identity",
   "version": "0.0.1",
-  "description": "Backend for Unicorn e-commerce store",
-  "private": true,
+  "description": "Identity microservice for Unicorn e-commerce store",
+  "main": "server.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www",
-    "devdebug": "DEBUG=api:* npm run dev"
+    "build": "npm run clean && babel src -d dist",
+    "clean": "rm -rf dist",
+    "db": "babel-node ./db/index.js",
+    "start": "npm run build && npm run db && node dist/server.js",
+    "dev": "nodemon --exec babel-node ./src/server.js",
+    "devdebug": "DEBUG=identity:* npm run dev"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pink-fluffy/api.git"
   },
   "author": "Sidharth Sudarsan <hi@sidharth.me> (https://github.com/sidoverflow)",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "SEE LICENSE",
   "bugs": {
     "url": "https://github.com/pink-fluffy/api/issues"
   },
@@ -29,9 +32,14 @@
     "jade": "^0.29.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.7",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "path": "^0.12.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.16.11",
     "eslint": "^8.11.0",
     "nodemon": "^2.0.15"
   }
