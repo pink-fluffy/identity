@@ -4,7 +4,7 @@ import enums from '../enums';
  * @param {*} usersDb
  * @returns
  */
-export default function makeLoginUser({ usersDb, compareHash }) {
+export default function makeLoginUser({ usersDb, compareHash, auth }) {
 	/**
 	 * Verify credentials and login user
 	 * @param {string} email - Email
@@ -16,10 +16,14 @@ export default function makeLoginUser({ usersDb, compareHash }) {
 		if (!exists || !compareHash(password, exists.password)) {
 			// authentication failed
 			throw { status: enums.STATUS_CODES.UNAUTHORIZED, message: enums.REASON_PHRASES.UNAUTHORIZED };
-		} else {
-			// authentication successful
-			return exists;
 		}
+
+		// authentication successful
+		const accessToken = auth.createAccessToken(exists.id, exists.email);
+
+		const data = new LoginData(accessToken);
+
+		return data;
 	};
 }
 
@@ -29,5 +33,3 @@ class LoginData {
 		this.refreshToken = refreshToken;
 	}
 }
-
-export { LoginData };

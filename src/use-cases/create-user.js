@@ -5,7 +5,7 @@ import enums from '../enums';
  * @param {*} usersDb
  * @returns
  */
-export default function makeCreateUser({ usersDb, hash }) {
+export default function makeCreateUser({ usersDb, hash, auth }) {
 	/**
 	 * Check for duplicate user and invoke usersDB insert method
 	 * @param {Object} userInfo
@@ -22,7 +22,7 @@ export default function makeCreateUser({ usersDb, hash }) {
 			throw { status: enums.ERRORS.DUPLICATE_USER.status, message: enums.ERRORS.DUPLICATE_USER.message };
 		}
 
-		return usersDb.insert({
+		const createdUser = usersDb.insert({
 			email: user.getEmail(),
 			password: user.getPassword(),
 			role: user.getRole(),
@@ -31,6 +31,16 @@ export default function makeCreateUser({ usersDb, hash }) {
 			created_at: user.getCreatedAt(),
 			updated_at: user.getUpdatedAt()
 		});
+
+		const accessToken = auth.createAccessToken(createdUser.id, createdUser.email);
+
+		const data = new CreateData({
+			full_name: createdUser.full_name,
+			email: createdUser.email,
+			accessToken: accessToken
+		});
+
+		return data;
 	};
 }
 
@@ -42,5 +52,3 @@ class CreateData {
 		this.refreshToken = null;
 	}
 }
-
-export { CreateData };

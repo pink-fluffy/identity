@@ -1,11 +1,10 @@
 /**
- *
+ * Build make user function
  * @param {*} validator
  * @returns
  */
 export default function buildMakeUser(validator) {
-	/**
-	 *
+	/** Make user object
 	 */
 	return function makeUser({
 		email,

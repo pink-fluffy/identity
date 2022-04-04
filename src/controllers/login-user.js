@@ -1,5 +1,5 @@
 import enums from '../enums';
-export default function makeLoginUser({ userService, LoginData, ServiceResponse, ServiceData, createAccessToken }) {
+export default function makeLoginUser({ userService, ServiceResponse, ServiceData }) {
 	return async function loginUser(body) {
 		const response = new ServiceResponse();
 		try {
@@ -29,9 +29,7 @@ export default function makeLoginUser({ userService, LoginData, ServiceResponse,
 	 * @param {String} password
 	 */
 	async function login(email, password) {
-		const user = await userService.login(email, password);
-		const accessToken = createAccessToken(user.id, user.email);
-		const data = new LoginData(accessToken);
+		const data = await userService.login(email, password);
 		return data;
 	}
 }
