@@ -35,7 +35,6 @@ export default function makeCreateUser({
 	 * @param {String} last_name
 	 * @param {String} email
 	 * @param {String} password
-	 * @returns {Types.Response} response
 	 */
 	async function register(first_name, last_name, email, password) {
 		const hashedPassword = await hash(password);
@@ -49,7 +48,11 @@ export default function makeCreateUser({
 		const user = await userService.create(userInfo);
 		const accessToken = createAccessToken(user.id, user.email);
 
-		const data = new CreateData(`${user.first_name} ${user.last_name}`, user.email, accessToken);
+		const data = new CreateData({
+			full_name: `${user.first_name} ${user.last_name}`,
+			email: user.email,
+			accessToken: accessToken
+		});
 
 		const last_modified = new Date(user.updated_at).toUTCString();
 		return { data, last_modified };

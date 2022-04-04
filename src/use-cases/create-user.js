@@ -34,10 +34,10 @@ export default function makeCreateUser(usersDb) {
 }
 
 class CreateData {
-	constructor(name, email, accessToken) {
-		this.name = name;
-		this.email = email;
-		this.accessToken = accessToken;
+	constructor(createdUser) {
+		this.name = createdUser.full_name;
+		this.email = createdUser.email;
+		this.accessToken = createdUser.accessToken;
 		this.refreshToken = null;
 	}
 }
