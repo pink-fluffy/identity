@@ -5,7 +5,7 @@ import enums from '../enums';
  * @param {*} usersDb
  * @returns
  */
-export default function makeCreateUser(usersDb) {
+export default function makeCreateUser({ usersDb, hash }) {
 	/**
 	 * Check for duplicate user and invoke usersDB insert method
 	 * @param {Object} userInfo
@@ -15,6 +15,7 @@ export default function makeCreateUser(usersDb) {
 	 * @property {string} password - Hashed Password
 	 */
 	return async function createUser(userInfo) {
+		userInfo.password = hash(userInfo.password);
 		const user = makeUser(userInfo);
 		const exists = await usersDb.findByEmail(user.getEmail());
 		if (exists) {

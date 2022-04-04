@@ -1,4 +1,3 @@
 import { createAccessToken } from './auth';
-import hash from './hash';
-
-export { createAccessToken, hash };
+import { hash, compare as compareHash } from './hash';
+export { createAccessToken, hash, compareHash };

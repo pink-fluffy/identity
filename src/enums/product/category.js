@@ -1,7 +1,0 @@
-module.exports = {
-    DAIRY: 'DAIRY',
-    POULTRY: 'POULTRY',
-    VEGETABLES: 'VEGETABLES',
-    FRUITS: 'FRUITS',
-    COSMETICS: 'COSMETICS'
-};

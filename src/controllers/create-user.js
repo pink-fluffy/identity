@@ -1,12 +1,5 @@
 import enums from '../enums';
-export default function makeCreateUser({
-	userService,
-	CreateData,
-	ServiceResponse,
-	ServiceData,
-	hash,
-	createAccessToken
-}) {
+export default function makeCreateUser({ userService, CreateData, ServiceResponse, ServiceData, createAccessToken }) {
 	return async function createUser(body) {
 		const response = new ServiceResponse();
 		try {
@@ -37,12 +30,11 @@ export default function makeCreateUser({
 	 * @param {String} password
 	 */
 	async function register(first_name, last_name, email, password) {
-		const hashedPassword = await hash(password);
 		const userInfo = {
 			first_name: first_name,
 			last_name: last_name,
 			email: email,
-			password: hashedPassword
+			password: password
 		};
 
 		const user = await userService.create(userInfo);

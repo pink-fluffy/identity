@@ -1,6 +1,0 @@
-module.exports = {
-    PROCESSING: 'PROCESSING',
-    SHIPPED: 'SHIPPED',
-    TRANSIT: 'TRANSIT',
-    DELIVERED: 'DELIVERED'
-};

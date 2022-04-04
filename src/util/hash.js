@@ -4,9 +4,18 @@ import bcrypt from 'bcrypt';
  * Hash function
  * @param string
  */
-async function hash(string) {
-	const hashedResult = await bcrypt.hash(string, 10);
+function hash(string) {
+	const hashedResult = bcrypt.hashSync(string, 10);
 	return hashedResult;
 }
 
-export default hash;
+/**
+ * Compare hash with source
+ * @param {string} source
+ * @param {string} hashed
+ * @returns
+ */
+function compare(source, hashed) {
+	return bcrypt.compareSync(source, hashed);
+}
+export { hash, compare };

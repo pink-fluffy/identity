@@ -1,12 +1,15 @@
+import makeLoginUser from './login-user';
 import makeCreateUser from './create-user';
 import userService from '../use-cases';
-import { CreateData, ServiceResponse, ServiceData } from '../use-cases';
-import { hash, createAccessToken } from '../util';
+import { CreateData, LoginData, ServiceResponse, ServiceData } from '../use-cases';
+import { createAccessToken } from '../util';
 
-const postUser = makeCreateUser({ userService, CreateData, ServiceResponse, ServiceData, hash, createAccessToken });
+const postUser = makeCreateUser({ userService, CreateData, ServiceResponse, ServiceData, createAccessToken });
+const loginUser = makeLoginUser({ userService, LoginData, ServiceResponse, ServiceData, createAccessToken });
 
 const userController = Object.freeze({
-	postUser
+	post: postUser,
+	login: loginUser
 });
 
 export default userController;

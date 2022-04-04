@@ -19,7 +19,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res, next) {
 	res.send('Unicorn Store Identity Microservice REST API');
 });
-app.post(`/${apiRoot}/register`, makeExpressCallback(userController.postUser));
+app.post(`/${apiRoot}/register`, makeExpressCallback(userController.post));
+app.post(`/${apiRoot}/login`, makeExpressCallback(userController.login));
 
 // Get port from environment and store in Express.
 var port = normalizePort(process.env.PORT || '3000');
