@@ -21,6 +21,7 @@ app.get('/', function (req, res, next) {
 });
 app.post(`/${apiRoot}/register`, makeExpressCallback(userController.post));
 app.post(`/${apiRoot}/login`, makeExpressCallback(userController.login));
+app.post(`/${apiRoot}/auth`, makeExpressCallback(userController.authorize));
 
 // Get port from environment and store in Express.
 var port = normalizePort(process.env.PORT || '3000');

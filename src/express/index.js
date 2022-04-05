@@ -3,7 +3,8 @@ export default function makeExpressCallback(controller) {
 		controller(req.body)
 			.then((serviceResponse) => {
 				res.type('json').status(serviceResponse.status).send(serviceResponse.body);
+				//res.type('json').status(200).send(serviceResponse.body);
 			})
-			.catch((e) => res.status(500).send({ error: 'An unknown error occurred.' }));
+			.catch((e) => res.status(500).send({ error: `An unknown error occurred.\n ${e}` }));
 	};
 }
