@@ -7,7 +7,7 @@
     "build": "npm run clean && babel src -d dist",
     "clean": "rm -rf dist",
     "db": "babel-node ./db/index.js",
-    "start": "npm run build && npm run db && node dist/server.js",
+    "start": "npm run build && npm run db",
     "dev": "nodemon --exec babel-node ./src/server.js",
     "devdebug": "DEBUG=identity:* npm run dev"
   },
