@@ -9,7 +9,7 @@ import http from 'http';
 
 dotenv.config();
 
-const apiRoot = process.env.API_ROOT;
+const apiRoot = process.env.IDENTITY_API_ROOT;
 const app = express();
 
 app.use(logger('dev'));
@@ -24,7 +24,7 @@ app.post(`/${apiRoot}/login`, makeExpressCallback(userController.login));
 app.post(`/${apiRoot}/auth`, makeExpressCallback(userController.authorize));
 
 // Get port from environment and store in Express.
-var port = normalizePort(process.env.PORT);
+var port = normalizePort(process.env.IDENTITY_PORT);
 app.set('port', port);
 
 // Create HTTP server.
