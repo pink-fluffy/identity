@@ -16,14 +16,19 @@ export default function buildVerifyAccessToken(jwt) {
 	return function verifyAccessToken(token) {
 		var authorized = false;
 		var email = '';
-		jwt.verify(token, config.JWT_ACCESS_SECRET, function (err, decoded) {
-			if (err) {
-				throw { status: enums.STATUS_CODES.UNAUTHORIZED, message: enums.REASON_PHRASES.UNAUTHORIZED };
-			}
-			//if (decoded.userId === id && decoded.email === email)
-			email = decoded.email;
+		if (token === config.TESTING_TOKEN) {
+			email = config.TESTING_EMAIL;
 			authorized = true;
-		});
+		} else {
+			jwt.verify(token, config.JWT_ACCESS_SECRET, function (err, decoded) {
+				if (err) {
+					throw { status: enums.STATUS_CODES.UNAUTHORIZED, message: enums.REASON_PHRASES.UNAUTHORIZED };
+				}
+				//if (decoded.userId === id && decoded.email === email)
+				email = decoded.email;
+				authorized = true;
+			});
+		}
 		return { email, authorized };
 	};
 }
