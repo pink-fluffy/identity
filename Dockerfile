@@ -12,6 +12,10 @@ COPY . .
 
 EXPOSE 9044
 
+ARG IDENTITY_PORT
+ARG IDENTITY_API_ROOT
+ARG MONGODB_URI
+ARG JWT_ACCESS_SECRET
 # Run node
 RUN npm start
 CMD ["node", "dist/server.js"]
