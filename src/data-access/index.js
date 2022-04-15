@@ -3,7 +3,7 @@ import makeUsersDb from './users-db';
 import userModel from './users-model';
 
 export async function makeDb() {
-	const URI = process.env.MONGODB_URI;
+	const URI = process.env.USERS_MONGODB_URI;
 	const options = {
 		useNewUrlParser: true,
 		useUnifiedTopology: true
