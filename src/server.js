@@ -24,7 +24,7 @@ app.post(`/${apiRoot}/login`, makeExpressCallback(userController.login));
 app.post(`/${apiRoot}/auth`, makeExpressCallback(userController.authorize));
 
 // Get port from environment and store in Express.
-var port = normalizePort(process.env.IDENTITY_PORT);
+var port = process.env.IDENTITY_PORT;
 app.set('port', port);
 
 // Create HTTP server.
@@ -33,19 +33,6 @@ var server = http.createServer(app);
 // Listen on provided port, on all network interfaces.
 server.listen(port, '0.0.0.0');
 server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-function normalizePort(val) {
-	var port = parseInt(val, 10);
-	// named pipe
-	if (isNaN(port)) return val;
-	// port number
-	if (port >= 0) return port;
-
-	return false;
-}
 
 /**
  * Event listener for HTTP server "listening" event.
