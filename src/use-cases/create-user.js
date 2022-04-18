@@ -35,6 +35,7 @@ export default function makeCreateUser({ usersDb, hash, auth }) {
 		const accessToken = auth.createAccessToken(createdUser.id, createdUser.email);
 
 		const data = new CreateData({
+			id: createdUser.id,
 			full_name: createdUser.full_name,
 			email: createdUser.email,
 			accessToken: accessToken
@@ -46,6 +47,7 @@ export default function makeCreateUser({ usersDb, hash, auth }) {
 
 class CreateData {
 	constructor(createdUser) {
+		this.id = createdUser.id;
 		this.name = createdUser.full_name;
 		this.email = createdUser.email;
 		this.accessToken = createdUser.accessToken;
