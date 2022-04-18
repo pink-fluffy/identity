@@ -1,6 +1,6 @@
 export default function makeExpressCallback(controller) {
 	return (req, res) => {
-		controller(req.body)
+		controller(req)
 			.then((serviceResponse) => {
 				res.type('json').status(serviceResponse.status).send(serviceResponse.body);
 				//res.type('json').status(200).send(serviceResponse.body);

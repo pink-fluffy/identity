@@ -1,9 +1,9 @@
 import enums from '../enums';
 export default function makeLoginUser({ userService, ServiceResponse, ServiceData }) {
-	return async function loginUser(body) {
+	return async function loginUser(req) {
 		const response = new ServiceResponse();
 		try {
-			const { email, password } = body;
+			const { email, password } = req.body;
 			if (!(email && password))
 				throw { status: enums.ERRORS.INVALID_INPUT.status, message: enums.ERRORS.INVALID_INPUT.message };
 

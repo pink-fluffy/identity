@@ -1,9 +1,9 @@
 import enums from '../enums';
 export default function makeAuthorizeUser({ userService, ServiceResponse, ServiceData }) {
-	return async function authorizeUser(body) {
+	return async function authorizeUser(req) {
 		const response = new ServiceResponse();
 		try {
-			const { token } = body;
+			const { token } = req.body;
 			if (!token) throw { status: enums.ERRORS.INVALID_INPUT.status, message: enums.ERRORS.INVALID_INPUT.message };
 
 			const verified = await authorize(token);
