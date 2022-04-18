@@ -21,15 +21,16 @@ export default function makeLoginUser({ usersDb, compareHash, auth }) {
 		// authentication successful
 		const accessToken = auth.createAccessToken(exists.id, exists.email);
 
-		const data = new LoginData(exists.id, accessToken);
+		const data = new LoginData(exists.id, exists.full_name, accessToken);
 
 		return data;
 	};
 }
 
 class LoginData {
-	constructor(id, accessToken, refreshToken = null) {
+	constructor(id, name, accessToken, refreshToken = null) {
 		this.id = id;
+		this.name = name;
 		this.accessToken = accessToken;
 		this.refreshToken = refreshToken;
 	}
